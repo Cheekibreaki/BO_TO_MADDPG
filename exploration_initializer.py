@@ -169,13 +169,13 @@ def main():
             result = subprocess.run(
                 [interpreter_path, f'{single_agent_working_directory}/main.py', './BO_TO_MADDPG/'+run_config_file_yaml_name], check=True,
                 cwd=single_agent_working_directory, stdout=subprocess.PIPE, text=True, encoding='utf-8')
-            minimum_smart_counter = result.stdout.splitlines()[-1]  # The standard output of the subprocess
-            last_reward = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+            minimum_smart_counter = result.stdout.splitlines()[-2]  # The standard output of the subprocess
+            last_reward = 500*float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
             print(last_reward)
         else:
             result = subprocess.run([interpreter_path, f'{multi_agent_working_directory}/main.py', './BO_TO_MADDPG/'+run_config_file_yaml_name], check=True, cwd=multi_agent_working_directory, stdout=subprocess.PIPE, text=True, encoding='utf-8')
-            minimum_smart_counter = result.stdout.splitlines()[-1]  # The standard output of the subprocess
-            last_reward = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+            minimum_smart_counter = result.stdout.splitlines()[-2]  # The standard output of the subprocess
+            last_reward = 500*float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
             print(last_reward)
         # Print or use the captured information as needed
 

@@ -82,7 +82,7 @@ def cost_function(q):
         total_cost = q[:, 0] * cost_high_high + q[:, 1] * cost_high_low + q[:, 2] * cost_low_high + q[:,
                                                                                                          3] * cost_low_low
 
-    return total_cost
+    return -1 * total_cost
 
 
 # Exploration factor kappa
@@ -135,7 +135,7 @@ def call_initializer(solution):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+        result = float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -189,7 +189,7 @@ if __name__ == "__main__":
     grid_points = np.array(grid_points)
     grid_points = grid_points[1:]
     '''
-    
+    '''
     #1
     priors = [
         {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(2, 0, 0, 3)},  # Prior 1
@@ -198,7 +198,7 @@ if __name__ == "__main__":
         {'N1': 3, 'N2': 2, 'N3': 2, 'N4': 1, 'target': black_box_function(3, 2, 2, 1)},  # prior 4
         {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': black_box_function(3, 1, 3, 1)},  # prior 5
     ]
-    
+    '''
     #2
     priors = [
             {'N1': 0, 'N2': 1, 'N3':1, 'N4':3, 'target': black_box_function(0, 1, 1, 3)},   # Prior 1
@@ -225,7 +225,7 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 1, 'N3':3, 'N4':0, 'target': black_box_function(0, 1, 3, 0)},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':2, 'N4':0, 'target': black_box_function(0, 2, 2, 0)},   #prior 5
         ]
-    '''
+    
     #5 
     priors = [ 
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   # Prior 1
@@ -234,7 +234,7 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 0, 'N3':1, 'N4':2, 'target': black_box_function(0, 0, 1, 2)},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(0, 2, 0, 2)},   #prior 5
         ]
-    '''
+    
     '''
 
     count = 1
