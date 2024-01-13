@@ -1,7 +1,7 @@
 import json
 import os
 import subprocess
-
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.gaussian_process import GaussianProcessRegressor
@@ -24,19 +24,18 @@ np.random.seed(2609)
 random.seed(2609)
 interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe "
 best_crew_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/BOOF_best_crew.json "
-base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map4_1.yaml "
+base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
 #base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
 test_run_config_path = "E:/Summer Research 2023/MADDPG_New/MADDPG/assets/BO_TO_MADDPG/"
 
-
+prior_index = int(sys.argv[1])
 def cost_function(q):
     # Fixed costs for each feature level
 
-
-    cost_high_high = 80
-    cost_high_low = 45
-    cost_low_high = 50
-    cost_low_low = 10
+    cost_high_high = 0.072
+    cost_high_low = 0.0405
+    cost_low_high = 0.045
+    cost_low_low = 0.009
 
 
     if isinstance(q, list):
@@ -62,7 +61,7 @@ def call_initializer(solution):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+        result = -1 * float( result.stdout.splitlines()[-1] ) # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -93,7 +92,7 @@ def black_box_function(N1, N2, N3, N4):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+        result = -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -156,10 +155,10 @@ if __name__ == "__main__":
     grid_points = np.array(grid_points)
     grid_points = grid_points[1:]
     # Initial Priors
-    '''
+
     
     # 1
-    priors = [
+    priors_1 = [
          {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(2, 0, 0, 3)},  # Prior 1
          {'N1': 0, 'N2': 3, 'N3': 3, 'N4': 0, 'target': black_box_function(0, 3, 3, 0)},  # Prior 2
          {'N1': 1, 'N2': 1, 'N3': 1, 'N4': 2, 'target': black_box_function(1, 1, 1, 2)},  # Prior 3
@@ -167,51 +166,51 @@ if __name__ == "__main__":
          {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': black_box_function(3, 1, 3, 1)},  # prior 5
      ]
 
-    priors2 = [
-         {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': cost_function([2, 0, 0, 3])},  # Prior 1
-         {'N1': 0, 'N2': 3, 'N3': 3, 'N4': 0, 'target': cost_function([0, 3, 3, 0])},  # Prior 2
-         {'N1': 1, 'N2': 1, 'N3': 1, 'N4': 2, 'target': cost_function([1, 1, 1, 2])},  # Prior 3
-         {'N1': 3, 'N2': 2, 'N3': 2, 'N4': 1, 'target': cost_function([3, 2, 2, 1])},  # prior 4
-         {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': cost_function([3, 1, 3, 1])},  # prior 5
+    priors2_1 = [
+        {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(2, 0, 0, 3)},  # Prior 1
+        {'N1': 0, 'N2': 3, 'N3': 3, 'N4': 0, 'target': black_box_function(0, 3, 3, 0)},  # Prior 2
+        {'N1': 1, 'N2': 1, 'N3': 1, 'N4': 2, 'target': black_box_function(1, 1, 1, 2)},  # Prior 3
+        {'N1': 3, 'N2': 2, 'N3': 2, 'N4': 1, 'target': black_box_function(3, 2, 2, 1)},  # prior 4
+        {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': black_box_function(3, 1, 3, 1)},  # prior 5
      ]
     
     
     #2
     
-    priors = [
+    priors_2 = [
             {'N1': 0, 'N2': 1, 'N3':1, 'N4':3, 'target': black_box_function(0, 1, 1, 3)},   # Prior 1
             {'N1': 2, 'N2': 2, 'N3':2, 'N4':1, 'target': black_box_function(2, 2, 2, 1)},   # Prior 2
             {'N1': 3, 'N2': 0, 'N3':0, 'N4':2, 'target': black_box_function(3, 0, 0, 2)},   # Prior 3
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   #prior 4
             {'N1': 1, 'N2': 0, 'N3':2, 'N4':0, 'target': black_box_function(1, 0, 2, 0)},   #prior 5
         ]
-    priors2 = [
-            {'N1': 0, 'N2': 1, 'N3':1, 'N4':3, 'target': cost_function([0, 1, 1, 3])},   # Prior 1
-            {'N1': 2, 'N2': 2, 'N3':2, 'N4':1, 'target': cost_function([2, 2, 2, 1])},   # Prior 2
-            {'N1': 3, 'N2': 0, 'N3':0, 'N4':2, 'target': cost_function([3, 0, 0, 2])},   # Prior 3
-            {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': cost_function([1, 3, 3, 0])},   #prior 4
-            {'N1': 1, 'N2': 0, 'N3':2, 'N4':0, 'target': cost_function([1, 0, 2, 0])},   #prior 5
+    priors2_2 = [
+            {'N1': 0, 'N2': 1, 'N3': 1, 'N4': 3, 'target': black_box_function(0, 1, 1, 3)},  # Prior 1
+            {'N1': 2, 'N2': 2, 'N3': 2, 'N4': 1, 'target': black_box_function(2, 2, 2, 1)},  # Prior 2
+            {'N1': 3, 'N2': 0, 'N3': 0, 'N4': 2, 'target': black_box_function(3, 0, 0, 2)},  # Prior 3
+            {'N1': 1, 'N2': 3, 'N3': 3, 'N4': 0, 'target': black_box_function(1, 3, 3, 0)},  # prior 4
+            {'N1': 1, 'N2': 0, 'N3': 2, 'N4': 0, 'target': black_box_function(1, 0, 2, 0)},  # prior 5
         ]
     
     #3
-    priors = [ 
+    priors_3 = [
             {'N1': 3, 'N2': 3, 'N3':2, 'N4':1, 'target': black_box_function(3, 3, 2, 1)},   # Prior 1
             {'N1': 1, 'N2': 0, 'N3':0, 'N4':3, 'target': black_box_function(1, 0, 0, 3)},   # Prior 2
             {'N1': 0, 'N2': 2, 'N3':3, 'N4':0, 'target': black_box_function(0, 2, 3, 0)},   # Prior 3
             {'N1': 2, 'N2': 1, 'N3':1, 'N4':2, 'target': black_box_function(2, 1, 1, 2)},   #prior 4
             {'N1': 2, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(2, 2, 0, 2)},   #prior 5
         ]
-    priors2 = [ 
-            {'N1': 3, 'N2': 3, 'N3':2, 'N4':1, 'target': cost_function([3, 3, 2, 1])},   # Prior 1
-            {'N1': 1, 'N2': 0, 'N3':0, 'N4':3, 'target': cost_function([1, 0, 0, 3])},   # Prior 2
-            {'N1': 0, 'N2': 2, 'N3':3, 'N4':0, 'target': cost_function([0, 2, 3, 0])},   # Prior 3
-            {'N1': 2, 'N2': 1, 'N3':1, 'N4':2, 'target': cost_function([2, 1, 1, 2])},   #prior 4
-            {'N1': 2, 'N2': 2, 'N3':0, 'N4':2, 'target': cost_function([2, 2, 0, 2])},   #prior 5
+    priors2_3 = [
+            {'N1': 3, 'N2': 3, 'N3': 2, 'N4': 1, 'target': black_box_function(3, 3, 2, 1)},  # Prior 1
+            {'N1': 1, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(1, 0, 0, 3)},  # Prior 2
+            {'N1': 0, 'N2': 2, 'N3': 3, 'N4': 0, 'target': black_box_function(0, 2, 3, 0)},  # Prior 3
+            {'N1': 2, 'N2': 1, 'N3': 1, 'N4': 2, 'target': black_box_function(2, 1, 1, 2)},  # prior 4
+            {'N1': 2, 'N2': 2, 'N3': 0, 'N4': 2, 'target': black_box_function(2, 2, 0, 2)},  # prior 5
         ]
-    
-    
+
+
     #4
-    priors = [
+    priors_4 = [
             {'N1': 1, 'N2': 3, 'N3':1, 'N4':2, 'target': black_box_function(1, 3, 1, 2)},   # Prior 1
             {'N1': 2, 'N2': 0, 'N3':2, 'N4':1, 'target': black_box_function(2, 0, 2, 1)},   # Prior 2
             {'N1': 3, 'N2': 2, 'N3':0, 'N4':3, 'target': black_box_function(3, 2, 0, 3)},   # Prior 3
@@ -219,16 +218,16 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 2, 'N3':2, 'N4':0, 'target': black_box_function(0, 2, 2, 0)},   #prior 5
         ]
 
-    priors2 = [
-            {'N1': 1, 'N2': 3, 'N3':1, 'N4':2, 'target': cost_function([1, 3, 1, 2])},   # Prior 1
-            {'N1': 2, 'N2': 0, 'N3':2, 'N4':1, 'target': cost_function([2, 0, 2, 1])},   # Prior 2
-            {'N1': 3, 'N2': 2, 'N3':0, 'N4':3, 'target': cost_function([3, 2, 0, 3])},   # Prior 3
-            {'N1': 0, 'N2': 1, 'N3':3, 'N4':0, 'target': cost_function([0, 1, 3, 0])},   #prior 4
-            {'N1': 0, 'N2': 2, 'N3':2, 'N4':0, 'target': cost_function([0, 2, 2, 0])},   #prior 5
+    priors2_4 = [
+            {'N1': 1, 'N2': 3, 'N3': 1, 'N4': 2, 'target': black_box_function(1, 3, 1, 2)},  # Prior 1
+            {'N1': 2, 'N2': 0, 'N3': 2, 'N4': 1, 'target': black_box_function(2, 0, 2, 1)},  # Prior 2
+            {'N1': 3, 'N2': 2, 'N3': 0, 'N4': 3, 'target': black_box_function(3, 2, 0, 3)},  # Prior 3
+            {'N1': 0, 'N2': 1, 'N3': 3, 'N4': 0, 'target': black_box_function(0, 1, 3, 0)},  # prior 4
+            {'N1': 0, 'N2': 2, 'N3': 2, 'N4': 0, 'target': black_box_function(0, 2, 2, 0)},  # prior 5
         ]
-    '''
+
     #5
-    priors = [
+    priors_5 = [
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   # Prior 1
             {'N1': 3, 'N2': 1, 'N3':0, 'N4':3, 'target': black_box_function(3, 1, 0, 3)},   # Prior 2
             {'N1': 2, 'N2': 2, 'N3':2, 'N4':1, 'target': black_box_function(2, 2, 2, 1)},   # Prior 3
@@ -236,15 +235,32 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(0, 2, 0, 2)},   #prior 5
         ]
 
-    priors2 = [
-            {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': cost_function([1, 3, 3, 0])},   # Prior 1
-            {'N1': 3, 'N2': 1, 'N3':0, 'N4':3, 'target': cost_function([3, 1, 0, 3])},   # Prior 2
-            {'N1': 2, 'N2': 2, 'N3':2, 'N4':1, 'target': cost_function([2, 2, 2, 1])},   # Prior 3
-            {'N1': 0, 'N2': 0, 'N3':1, 'N4':2, 'target': cost_function([0, 0, 1, 2])},   #prior 4
-            {'N1': 0, 'N2': 2, 'N3':0, 'N4':2, 'target': cost_function([0, 2, 0, 2])},   #prior 5
+    priors2_5 = [
+        {'N1': 1, 'N2': 3, 'N3': 3, 'N4': 0, 'target': black_box_function(1, 3, 3, 0)},  # Prior 1
+        {'N1': 3, 'N2': 1, 'N3': 0, 'N4': 3, 'target': black_box_function(3, 1, 0, 3)},  # Prior 2
+        {'N1': 2, 'N2': 2, 'N3': 2, 'N4': 1, 'target': black_box_function(2, 2, 2, 1)},  # Prior 3
+        {'N1': 0, 'N2': 0, 'N3': 1, 'N4': 2, 'target': black_box_function(0, 0, 1, 2)},  # prior 4
+        {'N1': 0, 'N2': 2, 'N3': 0, 'N4': 2, 'target': black_box_function(0, 2, 0, 2)},  # prior 5
         ]
-    '''
-    '''
+    if prior_index == 1:
+        priors = priors_1
+        priors2 = priors2_1
+    elif prior_index == 2:
+        priors = priors_2
+        priors2 = priors2_2
+    elif prior_index == 3:
+        priors = priors_3
+        priors2 = priors2_3
+    elif prior_index == 4:
+        priors = priors_4
+        priors2 = priors2_4
+    elif prior_index == 5:
+        priors = priors_5
+        priors2 = priors2_5
+    else:
+        raise ValueError("Invalid prior index. Please select a value between 1 and 5.")
+
+
     count = 1
     while count <= budget:
         print('Iteration: ', count)

@@ -1,6 +1,6 @@
 # BENCHMARK 2
 # install pymoo 0.6.0.1
-
+import sys
 import json
 import os
 import numpy as np
@@ -28,11 +28,11 @@ random.seed(2609)
 # interpreter_path = "C:/Users/Daniel Yin/AppData/Local/Programs/Python/Python39/python.exe"
 interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe "
 base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
-best_crew_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/BOOF_best_crew.json "
 #base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map4_1.yaml "
 #base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map6_1.yaml "
 test_run_config_path = "E:/Summer Research 2023/MADDPG_New/MADDPG/assets/BO_TO_MADDPG/"
 
+prior_index = int(sys.argv[1])
 
 class MySampling(Sampling):
 
@@ -68,10 +68,15 @@ def cost_function(q):
     # Fixed costs for each feature level
 
 
-    cost_high_high = 80
-    cost_high_low = 45
-    cost_low_high = 50
-    cost_low_low = 10
+    # cost_high_high = 80
+    # cost_high_low = 45
+    # cost_low_high = 50
+    # cost_low_low = 10
+
+    cost_high_high = 0.072
+    cost_high_low = 0.0405
+    cost_low_high = 0.045
+    cost_low_low = 0.009
 
 
     if isinstance(q, list):
@@ -82,7 +87,7 @@ def cost_function(q):
         total_cost = q[:, 0] * cost_high_high + q[:, 1] * cost_high_low + q[:, 2] * cost_low_high + q[:,
                                                                                                          3] * cost_low_low
 
-    return -1 * total_cost
+    return total_cost
 
 
 # Exploration factor kappa
@@ -135,7 +140,7 @@ def call_initializer(solution):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
+        result = -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -166,7 +171,7 @@ def black_box_function(N1, N2, N3, N4):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+        result = -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -188,54 +193,65 @@ if __name__ == "__main__":
         grid_points.append([N1, N2, N3, N4])
     grid_points = np.array(grid_points)
     grid_points = grid_points[1:]
-    '''
-    '''
+
+
     #1
-    priors = [
+    priors1 = [
         {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(2, 0, 0, 3)},  # Prior 1
         {'N1': 0, 'N2': 3, 'N3': 3, 'N4': 0, 'target': black_box_function(0, 3, 3, 0)},  # Prior 2
         {'N1': 1, 'N2': 1, 'N3': 1, 'N4': 2, 'target': black_box_function(1, 1, 1, 2)},  # Prior 3
         {'N1': 3, 'N2': 2, 'N3': 2, 'N4': 1, 'target': black_box_function(3, 2, 2, 1)},  # prior 4
         {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': black_box_function(3, 1, 3, 1)},  # prior 5
     ]
-    '''
+
     #2
-    priors = [
+    priors2 = [
             {'N1': 0, 'N2': 1, 'N3':1, 'N4':3, 'target': black_box_function(0, 1, 1, 3)},   # Prior 1
             {'N1': 2, 'N2': 2, 'N3':2, 'N4':1, 'target': black_box_function(2, 2, 2, 1)},   # Prior 2
             {'N1': 3, 'N2': 0, 'N3':0, 'N4':2, 'target': black_box_function(3, 0, 0, 2)},   # Prior 3
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   #prior 4
             {'N1': 1, 'N2': 0, 'N3':2, 'N4':0, 'target': black_box_function(1, 0, 2, 0)},   #prior 5
         ]
-    
-    #3 
-    priors = [ 
+
+    #3
+    priors3 = [
             {'N1': 3, 'N2': 3, 'N3':2, 'N4':1, 'target': black_box_function(3, 3, 2, 1)},   # Prior 1
             {'N1': 1, 'N2': 0, 'N3':0, 'N4':3, 'target': black_box_function(1, 0, 0, 3)},   # Prior 2
             {'N1': 0, 'N2': 2, 'N3':3, 'N4':0, 'target': black_box_function(0, 2, 3, 0)},   # Prior 3
             {'N1': 2, 'N2': 1, 'N3':1, 'N4':2, 'target': black_box_function(2, 1, 1, 2)},   #prior 4
             {'N1': 2, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(2, 2, 0, 2)},   #prior 5
         ]
-    
-    #4 
-    priors = [ 
+
+    #4
+    priors4 = [
             {'N1': 1, 'N2': 3, 'N3':1, 'N4':2, 'target': black_box_function(1, 3, 1, 2)},   # Prior 1
             {'N1': 2, 'N2': 0, 'N3':2, 'N4':1, 'target': black_box_function(2, 0, 2, 1)},   # Prior 2
             {'N1': 3, 'N2': 2, 'N3':0, 'N4':3, 'target': black_box_function(3, 2, 0, 3)},   # Prior 3
             {'N1': 0, 'N2': 1, 'N3':3, 'N4':0, 'target': black_box_function(0, 1, 3, 0)},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':2, 'N4':0, 'target': black_box_function(0, 2, 2, 0)},   #prior 5
         ]
-    
-    #5 
-    priors = [ 
+
+    #5
+    priors5 = [
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   # Prior 1
             {'N1': 3, 'N2': 1, 'N3':0, 'N4':3, 'target': black_box_function(3, 1, 0, 3)},   # Prior 2
             {'N1': 2, 'N2': 2, 'N3':2, 'N4':1, 'target': black_box_function(2, 2, 2, 1)},   # Prior 3
             {'N1': 0, 'N2': 0, 'N3':1, 'N4':2, 'target': black_box_function(0, 0, 1, 2)},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(0, 2, 0, 2)},   #prior 5
         ]
-    
-    '''
+
+    if prior_index == 1:
+        priors = priors1
+    elif prior_index == 2:
+        priors = priors2
+    elif prior_index == 3:
+        priors = priors3
+    elif prior_index == 4:
+        priors = priors4
+    elif prior_index == 5:
+        priors = priors5
+    else:
+        raise ValueError("Invalid prior index. Please select a value between 1 and 5.")
 
     count = 1
 
@@ -314,12 +330,22 @@ if __name__ == "__main__":
     print("visited_cost", visited_cost)
 
 
+
     # Convert visited_crews array to a list of strings to use as x-axis ticks
     x_data = [' '.join(map(str, crew)) for crew in visited_crews]
-    x_data = x_data[:20]
+    x_data = x_data[:25]
     x_indices = np.arange(len(x_data))
-    visited_performance = visited_performance[:20]
-    visited_cost = visited_cost[:20]
+    visited_performance = visited_performance[:25]
+    visited_cost = visited_cost[:25]
+
+    visited_utility = visited_performance + visited_cost
+    print('visited_utility', visited_utility)
+    best_visited_utility = np.argmin(visited_utility)
+    best_crew = visited_crews[best_visited_utility]
+    print("Best point suggestion : {}, iteration {}, utility: {}, performance: {}, cost: {}"
+          .format(best_crew, best_visited_utility, np.min(visited_utility), visited_performance[best_visited_utility],
+                  visited_cost[best_visited_utility]))
+
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -336,15 +362,6 @@ if __name__ == "__main__":
     ax.set_zlabel('Cost')
     plt.ylim(0,2000);
     plt.tight_layout()
-
-
-    visited_utility = visited_performance + visited_cost
-    print('visited_utility',visited_utility)
-    best_visited_utility = np.argmin(visited_utility)
-    best_crew = visited_crews[best_visited_utility]
-    print("Best point suggestion : {}, iteration {}, utility: {}, performance: {}, cost: {}"
-          .format(best_crew, best_visited_utility, np.min(visited_utility),visited_performance[best_visited_utility],visited_cost[best_visited_utility]))
-
     plt.show()
 
     # Convert visited_crews array to a list of strings to use as x-axis ticks

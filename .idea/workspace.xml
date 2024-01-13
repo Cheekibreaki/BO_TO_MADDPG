@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efe21d57-d786-4d01-8ed2-9ec92c989626" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Old_Cache/FindMinMax.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache_old.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cache/base_map3_config1_cache.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOFD 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/BOFD 1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOFD_best_crew.json" beforeDir="false" afterPath="$PROJECT_DIR$/BOFD_best_crew.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/base_map1_config1_cache.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/base_map3_config1_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/base_map4_config1_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/base_map4_config1_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/base_map5_config1_cache.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/base_map6_config1_cache.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOF_best_crew.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Old_Cache/FindMinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/FindMinMax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/USeMO 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/USeMO 1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exploration_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/exploration_initializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/priors.json" beforeDir="false" afterPath="$PROJECT_DIR$/priors.json" afterDir="false" />
     </list>
@@ -27,6 +27,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -49,21 +54,24 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Old_Cache/FindMinMax.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cache" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_TO_MADDPG\cache" />
+      <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_TO_MADDPG\Old_Cache" />
       <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG" />
       <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG\D_BO\cache" />
       <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG\cache" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_TO_MADDPG\cache" />
       <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_TO_MADDPG\Old_Cache" />
       <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG\D_BO" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.FindMinMax">
+  <component name="RunManager" selected="Python.BOFD1 prior 1">
     <configuration name="BOFD" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -85,7 +93,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BOFD1 (1)" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="BOFD1 prior 1" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,7 +106,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BOFD 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -106,7 +114,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BOFD1 (2)" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="BOFD1 prior 2" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -119,7 +127,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BOFD 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="2" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -127,7 +135,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BOFD1 (3)" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="BOFD1 prior 3" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -140,7 +148,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BOFD 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="3" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -148,7 +156,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BOFD1 (4)" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="BOFD1 prior 4" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -161,7 +169,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BOFD 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="4" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -169,7 +177,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BOFD1" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="BOFD1 prior 5" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -182,7 +190,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BOFD 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="5" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -261,7 +269,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Old_Cache" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -295,7 +303,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Naive" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="Naive Prior 1 (4)" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -307,8 +315,8 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive 1.py" />
+      <option name="PARAMETERS" value="1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -316,7 +324,112 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="USeMO 1 (1)" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="Naive Prior 1" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive 1.py" />
+      <option name="PARAMETERS" value="1" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Naive Prior 2" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive 1.py" />
+      <option name="PARAMETERS" value="2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Naive Prior 3" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive 1.py" />
+      <option name="PARAMETERS" value="3" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Naive Prior 4" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive 1.py" />
+      <option name="PARAMETERS" value="4" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Naive Prior 5" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/naive 1.py" />
+      <option name="PARAMETERS" value="5" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="USeMO 1 piror 1" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -329,7 +442,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USeMO 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -337,7 +450,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="USeMO 1 (2)" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="USeMO 1 piror 2" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -350,7 +463,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USeMO 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="2" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -358,7 +471,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="USeMO 1" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="USeMO 1 piror 3" type="PythonConfigurationType" factoryName="Python">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -371,7 +484,49 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USeMO 1.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="PARAMETERS" value="3" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="USeMO 1 piror 4" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USeMO 1.py" />
+      <option name="PARAMETERS" value="4" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="USeMO 1 piror 5" type="PythonConfigurationType" factoryName="Python">
+      <module name="BO_to_MADDPG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USeMO 1.py" />
+      <option name="PARAMETERS" value="5" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -737,6 +892,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Naive Prior 1 (4)" />
       <item itemvalue="Python.exploration_initializer" />
       <item itemvalue="Python.exploration_initializer 2003" />
       <item itemvalue="Python.exploration_initializer 1000" />
@@ -754,20 +910,26 @@
       <item itemvalue="Python.exploration_initializer 1020" />
       <item itemvalue="Python.exploration_initializer_single_agent" />
       <item itemvalue="Python.BOFD" />
-      <item itemvalue="Python.BOFD1" />
-      <item itemvalue="Python.BOFD1 (1)" />
-      <item itemvalue="Python.BOFD1 (2)" />
-      <item itemvalue="Python.BOFD1 (3)" />
-      <item itemvalue="Python.BOFD1 (4)" />
+      <item itemvalue="Python.BOFD1 prior 1" />
+      <item itemvalue="Python.BOFD1 prior 2" />
+      <item itemvalue="Python.BOFD1 prior 3" />
+      <item itemvalue="Python.BOFD1 prior 4" />
+      <item itemvalue="Python.BOFD1 prior 5" />
       <item itemvalue="Python.D_BO" />
       <item itemvalue="Python.D_BO (1)" />
       <item itemvalue="Python.NBIBOFD" />
       <item itemvalue="Python.BOFD_f0_Changed" />
-      <item itemvalue="Python.Naive" />
+      <item itemvalue="Python.Naive Prior 1" />
+      <item itemvalue="Python.Naive Prior 2" />
+      <item itemvalue="Python.Naive Prior 3" />
+      <item itemvalue="Python.Naive Prior 4" />
+      <item itemvalue="Python.Naive Prior 5" />
       <item itemvalue="Python.USeMO" />
-      <item itemvalue="Python.USeMO 1" />
-      <item itemvalue="Python.USeMO 1 (1)" />
-      <item itemvalue="Python.USeMO 1 (2)" />
+      <item itemvalue="Python.USeMO 1 piror 1" />
+      <item itemvalue="Python.USeMO 1 piror 2" />
+      <item itemvalue="Python.USeMO 1 piror 3" />
+      <item itemvalue="Python.USeMO 1 piror 4" />
+      <item itemvalue="Python.USeMO 1 piror 5" />
       <item itemvalue="Python.FindMinMax" />
     </list>
   </component>
@@ -969,7 +1131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704519494137</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Init">
+      <created>1704778015974</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1704778015974</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -999,16 +1168,5 @@
     <MESSAGE value="delete map6 cache" />
     <MESSAGE value="Init" />
     <option name="LAST_COMMIT_MESSAGE" value="Init" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BOFD 1.py</url>
-          <line>126</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

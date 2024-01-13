@@ -1,7 +1,7 @@
 import json
 
 # File path
-file_path = 'E:/Summer Research 2023/BO_to_MADDPG/BO_TO_MADDPG/Old_Cache/base_map3_config1_cache.json'
+file_path = './cache/base_map3_config1_cache.json'
 
 # Read data from file
 with open(file_path, 'r') as file:
@@ -30,7 +30,7 @@ def inverse_value(data):
     # Calculate inverse values scaled by the max value
     for item in data:
         # Inverse value calculation (scaled by max value)
-        item['inverse_value'] = max_value / item['value']
+        item['inverse_value'] = 1 - (item['value'] / max_value)
 
     return data
 
@@ -38,6 +38,8 @@ def inverse_value(data):
 # Apply the function
 result = inverse_value(data)
 
-# Print the results
-for item in result:
-    print(f"Original step Value: {item['value']}, Inverse Value: {item['inverse_value']}")
+# Overwrite the file with the new data
+with open(file_path, 'w') as file:
+    json.dump(result, file, indent=4)
+
+print("File overwritten with new data.")
