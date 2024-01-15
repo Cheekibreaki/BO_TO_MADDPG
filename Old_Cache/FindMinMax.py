@@ -1,7 +1,7 @@
 import json
 
 # File path
-file_path = './cache/base_map3_config1_cache.json'
+file_path = './base_map4_config1_cache.json'
 
 # Read data from file
 with open(file_path, 'r') as file:

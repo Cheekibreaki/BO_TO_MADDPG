@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efe21d57-d786-4d01-8ed2-9ec92c989626" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache_old.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cache/base_map3_config1_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cache/base_map4_config1_cache.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOFD 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/BOFD 1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOFD_best_crew.json" beforeDir="false" afterPath="$PROJECT_DIR$/BOFD_best_crew.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOF_best_crew.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Old_Cache/FindMinMax.py" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/FindMinMax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/base_map3_config1_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USeMO 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/USeMO 1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Old_Cache/base_map4_config1_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/Old_Cache/base_map4_config1_cache.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exploration_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/exploration_initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/priors.json" beforeDir="false" afterPath="$PROJECT_DIR$/priors.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +67,7 @@
       <recent name="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG\D_BO" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.BOFD1 prior 1">
+  <component name="RunManager" selected="Python.BOFD1 prior 5">
     <configuration name="BOFD" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="BO_to_MADDPG" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -269,7 +265,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="E:\Summer Research 2023\BO_to_MADDPG\BO_to_MADDPG\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Old_Cache" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -892,45 +888,45 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Naive Prior 1 (4)" />
-      <item itemvalue="Python.exploration_initializer" />
-      <item itemvalue="Python.exploration_initializer 2003" />
-      <item itemvalue="Python.exploration_initializer 1000" />
-      <item itemvalue="Python.exploration_initializer 0100" />
-      <item itemvalue="Python.exploration_initializer 0010" />
-      <item itemvalue="Python.exploration_initializer 0001" />
-      <item itemvalue="Python.exploration_initializer 0330" />
-      <item itemvalue="Python.exploration_initializer 1112" />
-      <item itemvalue="Python.exploration_initializer 3221" />
-      <item itemvalue="Python.exploration_initializer 3131" />
-      <item itemvalue="Python.exploration_initializer 0113" />
-      <item itemvalue="Python.exploration_initializer 2221" />
-      <item itemvalue="Python.exploration_initializer 3002" />
-      <item itemvalue="Python.exploration_initializer 1330" />
-      <item itemvalue="Python.exploration_initializer 1020" />
-      <item itemvalue="Python.exploration_initializer_single_agent" />
-      <item itemvalue="Python.BOFD" />
       <item itemvalue="Python.BOFD1 prior 1" />
       <item itemvalue="Python.BOFD1 prior 2" />
       <item itemvalue="Python.BOFD1 prior 3" />
       <item itemvalue="Python.BOFD1 prior 4" />
       <item itemvalue="Python.BOFD1 prior 5" />
-      <item itemvalue="Python.D_BO" />
-      <item itemvalue="Python.D_BO (1)" />
-      <item itemvalue="Python.NBIBOFD" />
+      <item itemvalue="Python.BOFD" />
       <item itemvalue="Python.BOFD_f0_Changed" />
+      <item itemvalue="Python.D_BO (1)" />
+      <item itemvalue="Python.D_BO" />
+      <item itemvalue="Python.FindMinMax" />
+      <item itemvalue="Python.NBIBOFD" />
+      <item itemvalue="Python.Naive Prior 1 (4)" />
       <item itemvalue="Python.Naive Prior 1" />
       <item itemvalue="Python.Naive Prior 2" />
       <item itemvalue="Python.Naive Prior 3" />
       <item itemvalue="Python.Naive Prior 4" />
       <item itemvalue="Python.Naive Prior 5" />
-      <item itemvalue="Python.USeMO" />
       <item itemvalue="Python.USeMO 1 piror 1" />
       <item itemvalue="Python.USeMO 1 piror 2" />
       <item itemvalue="Python.USeMO 1 piror 3" />
       <item itemvalue="Python.USeMO 1 piror 4" />
       <item itemvalue="Python.USeMO 1 piror 5" />
-      <item itemvalue="Python.FindMinMax" />
+      <item itemvalue="Python.USeMO" />
+      <item itemvalue="Python.exploration_initializer 0001" />
+      <item itemvalue="Python.exploration_initializer 0010" />
+      <item itemvalue="Python.exploration_initializer 0100" />
+      <item itemvalue="Python.exploration_initializer 0113" />
+      <item itemvalue="Python.exploration_initializer 0330" />
+      <item itemvalue="Python.exploration_initializer 1000" />
+      <item itemvalue="Python.exploration_initializer 1020" />
+      <item itemvalue="Python.exploration_initializer 1112" />
+      <item itemvalue="Python.exploration_initializer 1330" />
+      <item itemvalue="Python.exploration_initializer 2003" />
+      <item itemvalue="Python.exploration_initializer 2221" />
+      <item itemvalue="Python.exploration_initializer 3002" />
+      <item itemvalue="Python.exploration_initializer 3131" />
+      <item itemvalue="Python.exploration_initializer 3221" />
+      <item itemvalue="Python.exploration_initializer" />
+      <item itemvalue="Python.exploration_initializer_single_agent" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -1138,7 +1134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704778015974</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="testing map 3">
+      <created>1705115193225</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1705115193225</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1167,6 +1170,7 @@
     <MESSAGE value="map4 cache update" />
     <MESSAGE value="delete map6 cache" />
     <MESSAGE value="Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init" />
+    <MESSAGE value="testing map 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing map 3" />
   </component>
 </project>
