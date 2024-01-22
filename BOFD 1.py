@@ -73,10 +73,15 @@ def cost_function(q):
     # cost_low_high = 50
     # cost_low_low = 10
 
-    cost_high_high = 0.072
-    cost_high_low = 0.0405
-    cost_low_high = 0.045
-    cost_low_low = 0.009
+    # cost_high_high = 0.072
+    # cost_high_low = 0.0405
+    # cost_low_high = 0.045
+    # cost_low_low = 0.009
+
+    cost_high_high = 220
+    cost_high_low = 170
+    cost_low_high = 160
+    cost_low_low = 100
 
 
     if isinstance(q, list):
@@ -140,7 +145,7 @@ def call_initializer(solution):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
+        result = 2000 * -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -171,7 +176,7 @@ def black_box_function(N1, N2, N3, N4):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
+        result = 2000 * -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")

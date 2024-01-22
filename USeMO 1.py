@@ -24,7 +24,7 @@ np.random.seed(2609)
 random.seed(2609)
 interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe "
 best_crew_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/BOOF_best_crew.json "
-base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
+base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map4_1.yaml "
 #base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
 test_run_config_path = "E:/Summer Research 2023/MADDPG_New/MADDPG/assets/BO_TO_MADDPG/"
 
@@ -32,11 +32,15 @@ prior_index = int(sys.argv[1])
 def cost_function(q):
     # Fixed costs for each feature level
 
-    cost_high_high = 0.072
-    cost_high_low = 0.0405
-    cost_low_high = 0.045
-    cost_low_low = 0.009
+    # cost_high_high = 0.072
+    # cost_high_low = 0.0405
+    # cost_low_high = 0.045
+    # cost_low_low = 0.009
 
+    cost_high_high = 220
+    cost_high_low = 170
+    cost_low_high = 160
+    cost_low_low = 100
 
     if isinstance(q, list):
         total_cost = q[0] * cost_high_high + q[1] * cost_high_low + q[2] * cost_low_high + q[3] * cost_low_low
@@ -61,7 +65,7 @@ def call_initializer(solution):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = -1 * float( result.stdout.splitlines()[-1] ) # The standard output of the subprocess
+        result = 2000 * -1 * float( result.stdout.splitlines()[-1] ) # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
@@ -92,7 +96,7 @@ def black_box_function(N1, N2, N3, N4):
         result = subprocess.run([interpreter_path, 'exploration_initializer.py',
                                  file_path, base_config_path, test_run_config_path], check=True, cwd=os.getcwd(),
                                 stdout=subprocess.PIPE, text=True, encoding='utf-8')
-        result = -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
+        result = 2000 * -1 * float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
         # Now 'result' is properly defined within the try block
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
