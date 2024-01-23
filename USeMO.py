@@ -23,21 +23,20 @@ import random
 
 np.random.seed(2609)
 random.seed(2609)
-interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe "
-best_crew_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/BOOF_best_crew.json "
-base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map4_1.yaml "
-# base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
-test_run_config_path = "E:/Summer Research 2023/MADDPG_New/MADDPG/assets/BO_TO_MADDPG/"
-worst_performance = float('10000000')
+interpreter_path = "C:/Users/david/PycharmProjects/MADDPG/venv/Scripts/python.exe"
+best_crew_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/BOOF_best_crew.json"
+base_config_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/base_config_map3_1.yaml"
+test_run_config_path = "C:/Users/david/PycharmProjects/MADDPG/assets/BO_TO_MADDPG"
+
 
 def cost_function(q):
     # Fixed costs for each feature level
 
 
-    cost_high_high = 80
-    cost_high_low = 45
-    cost_low_high = 50
-    cost_low_low = 10
+    cost_high_high = 400
+    cost_high_low = 320
+    cost_low_high = 375
+    cost_low_low = 300
 
 
     if isinstance(q, list):
@@ -80,20 +79,6 @@ def call_initializer(solution):
     return new_data, result
 
 
-
-
-def get_random_satisfaction(crew):
-    # Check if the satisfaction for the crew is already in the dictionary
-    if tuple(crew) in satisfaction_dict:
-        return satisfaction_dict[tuple(crew)]
-    else:
-        # Generate a random satisfaction value between 0 and 1000
-        satisfaction = random.uniform(satisfaction_lower_bound, satisfaction_upper_bound)
-        # Store the satisfaction value in the dictionary for future use
-        satisfaction_dict[tuple(crew)] = satisfaction
-        return satisfaction
-
-
 def generate_all_crews():
     crews = []
     # Loop through all possible combinations of quantities for each feature level
@@ -104,25 +89,6 @@ def generate_all_crews():
                     crew = [q_low_low, q_high_low, q_low_high, q_high_high]
                     crews.append(crew)
     return crews
-
-
-def generate_satisfaction_for_all_crews():
-    crews = generate_all_crews()
-    for crew in crews:
-        get_random_satisfaction(crew)
-
-
-def max_satisfaction():
-    crews = generate_all_crews()
-    max_value = float('inf')  # Initialize to negative infinity
-    best_crew = None
-    for crew in crews:
-        satisfaction_utility = black_box_function(crew[0], crew[1], crew[2], crew[3]) + cost_function(crew)
-        if satisfaction_utility < max_value:
-            max_value = satisfaction_utility
-            best_crew = crew
-
-    return max_value, best_crew
 
 
 def black_box_function(N1, N2, N3, N4):
@@ -185,14 +151,9 @@ class CostProblem(Problem):
 
 # Problem Hiperparameters
 budget = 20
-satisfaction_dict = {}  # Dictionary to store satisfaction values for each unique crew
-satisfaction_lower_bound = 0
-satisfaction_upper_bound = 750
+
 
 if __name__ == "__main__":
-
-    # Generate satisfaction values for all 1364 different crews
-    generate_satisfaction_for_all_crews()
 
     # Generate discrete and linear space
     # Define the search space for the categorical variables N1, N2, N3, and N4
@@ -205,8 +166,7 @@ if __name__ == "__main__":
     grid_points = np.array(grid_points)
     grid_points = grid_points[1:]
     # Initial Priors
-    '''
-    '''
+
     # 1
     priors = [
          {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(2, 0, 0, 3)},  # Prior 1
@@ -223,8 +183,8 @@ if __name__ == "__main__":
          {'N1': 3, 'N2': 2, 'N3': 2, 'N4': 1, 'target': cost_function([3, 2, 2, 1])},  # prior 4
          {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': cost_function([3, 1, 3, 1])},  # prior 5
      ]
-    '''
     
+    '''
     #2
 
     priors = [
@@ -241,7 +201,7 @@ if __name__ == "__main__":
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': cost_function([1, 3, 3, 0])},   #prior 4
             {'N1': 1, 'N2': 0, 'N3':2, 'N4':0, 'target': cost_function([1, 0, 2, 0])},   #prior 5
         ]
-    
+ 
     #3
     priors = [ 
             {'N1': 3, 'N2': 3, 'N3':2, 'N4':1, 'target': black_box_function(3, 3, 2, 1)},   # Prior 1
@@ -257,8 +217,8 @@ if __name__ == "__main__":
             {'N1': 2, 'N2': 1, 'N3':1, 'N4':2, 'target': cost_function([2, 1, 1, 2])},   #prior 4
             {'N1': 2, 'N2': 2, 'N3':0, 'N4':2, 'target': cost_function([2, 2, 0, 2])},   #prior 5
         ]
-    
-    '''
+
+   
     #4
     priors = [
             {'N1': 1, 'N2': 3, 'N3':1, 'N4':2, 'target': black_box_function(1, 3, 1, 2)},   # Prior 1
@@ -275,7 +235,7 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 1, 'N3':3, 'N4':0, 'target': cost_function([0, 1, 3, 0])},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':2, 'N4':0, 'target': cost_function([0, 2, 2, 0])},   #prior 5
         ]
-    '''
+   
     #5
     priors = [
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   # Prior 1
@@ -292,8 +252,8 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 0, 'N3':1, 'N4':2, 'target': cost_function([0, 0, 1, 2])},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':0, 'N4':2, 'target': cost_function([0, 2, 0, 2])},   #prior 5
         ]
-    
     '''
+
     count = 1
     while count <= budget:
         print('Iteration: ', count)
@@ -335,12 +295,12 @@ if __name__ == "__main__":
 
         # Define the NSGA-II algorithm
         algorithm = NSGA2(pop_size=50, sampling=IntegerRandomSampling(),
-                          crossover=SBX(prob=1.0, eta=3.0, vtype=float, repair=RoundingRepair()),
-                          mutation=PM(prob=1.0, eta=3.0, vtype=float, repair=RoundingRepair()),
+                          crossover=SBX(prob=0.9, eta=3.0, vtype=float, repair=RoundingRepair()),
+                          mutation=PM(prob=1.0/4, eta=3.0, vtype=float, repair=RoundingRepair()),
                           eliminate_duplicates=True)
 
         # Find pareto frontier
-        res = minimize(problem, algorithm, termination=('n_gen', 4), verbose=False)
+        res = minimize(problem, algorithm, termination=('n_gen', 100), verbose=False)
 
         # Select best point based on uncertainty
         measure = []
@@ -371,12 +331,9 @@ if __name__ == "__main__":
         best_objectives = res.F[best_index]
 
         # Evaluate the black-box function for the best_solution
-        if np.array_equal(best_solution, [0, 0, 0, 0]):
-            best_prior = {'N1': 0, 'N2': 0, 'N3': 0, 'N4': 0, 'target': worst_performance}
-            best_performance = worst_performance
-        else:
-            # Append the best_solution and its performance to the list of priors
-            best_prior, best_performance = call_initializer(best_solution)
+
+        # Append the best_solution and its performance to the list of priors
+        best_prior, best_performance = call_initializer(best_solution)
         best_cost = cost_function(list(best_solution))
 
         # Append the best_solution and its performance to the list of priors
@@ -440,7 +397,7 @@ if __name__ == "__main__":
 
     # Convert visited_crews array to a list of strings to use as x-axis ticks
     x_data = [' '.join(map(str, crew)) for crew in visited_crews]
-    x_data = x_data[:20]
+    x_data = x_data[:25]
     # Create an array of indices for x-axis positioning
     x_indices = np.arange(len(x_data))
 

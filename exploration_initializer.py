@@ -6,14 +6,12 @@ import subprocess
 
 
 
-
 # working_directory = "D:/2023 Summer/MADDPG/src"
-multi_agent_working_directory = "E:/Summer Research 2023/MADDPG_New/MADDPG/src/"
-single_agent_working_directory = "E:/Summer Research 2023/MADDPG_single_agent/MADDPG/src/"
+multi_agent_working_directory = "C:/Users/david/PycharmProjects/MADDPG/src"
+single_agent_working_directory = "C:/Users/david/PycharmProjects/single_agent/src"
 # interpreter_path = "C:/Users/Daniel Yin/AppData/Local/Programs/Python/Python39/python.exe"
-interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe"
-
-
+interpreter_path = "C:/Users/david/PycharmProjects/MADDPG/venv/Scripts/python.exe"
+max_value = 1778.3
 
 def split_range(start, end, segment_size):
     segments = []
@@ -87,9 +85,8 @@ def main():
 
     # Search for the target list and retrieve its value
     for entry in data:
-        if entry['list'] == best_crew and 'last_reward' in entry:
+        if entry['list'] == best_crew:
             print(entry['value'])
-            print(entry['last_reward'])
             return
     else:
         print(f"The list {best_crew} was not found in the JSON data.")
@@ -169,14 +166,12 @@ def main():
             result = subprocess.run(
                 [interpreter_path, f'{single_agent_working_directory}/main.py', './BO_TO_MADDPG/'+run_config_file_yaml_name], check=True,
                 cwd=single_agent_working_directory, stdout=subprocess.PIPE, text=True, encoding='utf-8')
-            minimum_smart_counter = result.stdout.splitlines()[-2]  # The standard output of the subprocess
-            last_reward = 500*float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
-            print(last_reward)
+            result = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+            print(result)
         else:
             result = subprocess.run([interpreter_path, f'{multi_agent_working_directory}/main.py', './BO_TO_MADDPG/'+run_config_file_yaml_name], check=True, cwd=multi_agent_working_directory, stdout=subprocess.PIPE, text=True, encoding='utf-8')
-            minimum_smart_counter = result.stdout.splitlines()[-2]  # The standard output of the subprocess
-            last_reward = 500*float(result.stdout.splitlines()[-1])  # The standard output of the subprocess
-            print(last_reward)
+            result = result.stdout.splitlines()[-1]  # The standard output of the subprocess
+            print(result)
         # Print or use the captured information as needed
 
     # Create the file (or overwrite if it already exists)
@@ -185,7 +180,7 @@ def main():
     except subprocess.CalledProcessError as e:
         print(f"Error running exploration script_path: {e}")
 
-    new_data = {"list": best_crew, "value": minimum_smart_counter, "last_reward" : last_reward}
+    new_data = {"list": best_crew, "value": result}
 
     try:
         with open(cache_file_path, 'r') as file:
@@ -205,6 +200,9 @@ def main():
         json.dump(data, file, indent=4)
 
     return
+
+
+
 
 if __name__ == "__main__":
     main()

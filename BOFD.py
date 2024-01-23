@@ -22,15 +22,13 @@ import random
 from pymoo.core.callback import Callback
 from pymoo.core.sampling import Sampling
 import subprocess
-worst_performance = float('10000000')
 np.random.seed(2609)
 random.seed(2609)
 # interpreter_path = "C:/Users/Daniel Yin/AppData/Local/Programs/Python/Python39/python.exe"
-interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe "
-base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map6_1.yaml "
-best_crew_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/BOOF_best_crew.json "
-#base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map4_1.yaml "
-test_run_config_path = "E:/Summer Research 2023/MADDPG_New/MADDPG/assets/BO_TO_MADDPG/"
+interpreter_path = "C:/Users/david/PycharmProjects/MADDPG/venv/Scripts/python.exe"
+best_crew_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/BOOF_best_crew.json"
+base_config_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/base_config_map3_1.yaml"
+test_run_config_path = "C:/Users/david/PycharmProjects/MADDPG/assets/BO_TO_MADDPG"
 
 
 class MySampling(Sampling):
@@ -67,11 +65,10 @@ def cost_function(q):
     # Fixed costs for each feature level
 
 
-    cost_high_high = 80
-    cost_high_low = 45
-    cost_low_high = 50
-    cost_low_low = 10
-
+    cost_high_high = 400
+    cost_high_low = 320
+    cost_low_high = 375
+    cost_low_low = 300
 
     if isinstance(q, list):
         total_cost = q[0] * cost_high_high + q[1] * cost_high_low + q[2] * cost_low_high + q[3] * cost_low_low
@@ -194,9 +191,6 @@ def black_box_function(N1, N2, N3, N4):
 
 
 budget = 20
-satisfaction_dict = {}  # Dictionary to store satisfaction values for each unique crew
-satisfaction_lower_bound = 0
-satisfaction_upper_bound = 750  # 150 * 5
 
 if __name__ == "__main__":
     # Generate discrete and linear space
@@ -209,8 +203,8 @@ if __name__ == "__main__":
         grid_points.append([N1, N2, N3, N4])
     grid_points = np.array(grid_points)
     grid_points = grid_points[1:]
-    '''
-    
+
+
     #1
     priors = [
         {'N1': 2, 'N2': 0, 'N3': 0, 'N4': 3, 'target': black_box_function(2, 0, 0, 3)},  # Prior 1
@@ -219,7 +213,7 @@ if __name__ == "__main__":
         {'N1': 3, 'N2': 2, 'N3': 2, 'N4': 1, 'target': black_box_function(3, 2, 2, 1)},  # prior 4
         {'N1': 3, 'N2': 1, 'N3': 3, 'N4': 1, 'target': black_box_function(3, 1, 3, 1)},  # prior 5
     ]
-    
+    '''
     #2
     priors = [
             {'N1': 0, 'N2': 1, 'N3':1, 'N4':3, 'target': black_box_function(0, 1, 1, 3)},   # Prior 1
@@ -228,7 +222,7 @@ if __name__ == "__main__":
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   #prior 4
             {'N1': 1, 'N2': 0, 'N3':2, 'N4':0, 'target': black_box_function(1, 0, 2, 0)},   #prior 5
         ]
-    '''
+    
     #3 
     priors = [ 
             {'N1': 3, 'N2': 3, 'N3':2, 'N4':1, 'target': black_box_function(3, 3, 2, 1)},   # Prior 1
@@ -237,7 +231,7 @@ if __name__ == "__main__":
             {'N1': 2, 'N2': 1, 'N3':1, 'N4':2, 'target': black_box_function(2, 1, 1, 2)},   #prior 4
             {'N1': 2, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(2, 2, 0, 2)},   #prior 5
         ]
-    '''
+    
     #4 
     priors = [ 
             {'N1': 1, 'N2': 3, 'N3':1, 'N4':2, 'target': black_box_function(1, 3, 1, 2)},   # Prior 1
@@ -247,6 +241,7 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 2, 'N3':2, 'N4':0, 'target': black_box_function(0, 2, 2, 0)},   #prior 5
         ]
     
+    
     #5 
     priors = [ 
             {'N1': 1, 'N2': 3, 'N3':3, 'N4':0, 'target': black_box_function(1, 3, 3, 0)},   # Prior 1
@@ -255,7 +250,6 @@ if __name__ == "__main__":
             {'N1': 0, 'N2': 0, 'N3':1, 'N4':2, 'target': black_box_function(0, 0, 1, 2)},   #prior 4
             {'N1': 0, 'N2': 2, 'N3':0, 'N4':2, 'target': black_box_function(0, 2, 0, 2)},   #prior 5
         ]
-    
     '''
 
     count = 1
@@ -268,7 +262,11 @@ if __name__ == "__main__":
         kappa = sqrt_beta(t=len(priors) + 1, delta=ddelta)  # UCB kappa parameter/ t should be number of priors + 1
 
         # Initialize the Gaussian process regressor
-        kernel = RBF(length_scale=1.0)
+        k1 = RBF(length_scale=1.0)
+        k2 = RBF(length_scale=1.0)
+        k3 = RBF(length_scale=1.0)
+        k4 = RBF(length_scale=1.0)
+        kernel = k1 * k2 * k3 * k4
 
         regressor = GaussianProcessRegressor(kernel=kernel, alpha=1e-6,
                                              normalize_y=True,
@@ -288,8 +286,8 @@ if __name__ == "__main__":
 
         # Define the BIAS NSGA-II algorithm
         algorithm = NSGA2(pop_size=50, sampling=MySampling(),
-                          crossover=SBX(prob=1.0, eta=3.0, vtype=float, repair=RoundingRepair()),
-                          mutation=PM(prob=1.0, eta=3.0, vtype=float, repair=RoundingRepair()),
+                          crossover=SBX(prob=0.9, eta=3.0, vtype=float, repair=RoundingRepair()),
+                          mutation=PM(prob=1.0/4, eta=3.0, vtype=float, repair=RoundingRepair()),
                           eliminate_duplicates=True)
 
         # Create an instance of your custom callback
@@ -298,11 +296,11 @@ if __name__ == "__main__":
         # print('bias initial pop',bias_ini_pop)
 
         # Find pareto frontier
-        res = minimize(problem, algorithm=algorithm, termination=('n_gen', 4), verbose=False)
+        res = minimize(problem, algorithm=algorithm, termination=('n_gen', 100), verbose=False)
 
         # print('Pareto frontier',res.X, res.F )
         # Select best point based on uncertainty
-        measure = res.F[:, 0]  # + res.F[:,1]
+        measure = res.F[:, 0]  + res.F[:,1]
         # Find the index of the solution with the max std
         best_index = np.argmin(measure)
 
@@ -314,12 +312,8 @@ if __name__ == "__main__":
         # best_performance = black_box_function(best_solution[0], best_solution[1], best_solution[2], best_solution[3])
         best_cost = cost_function(list(best_solution))
 
-        if np.array_equal(best_solution, [0, 0, 0, 0]):
-            best_prior = {'N1': 0, 'N2': 0, 'N3': 0, 'N4': 0, 'target': worst_performance}
-            best_performance = worst_performance
-        else:
-            # Append the best_solution and its performance to the list of priors
-            best_prior, best_performance = call_initializer(best_solution)
+        # Append the best_solution and its performance to the list of priors
+        best_prior, best_performance = call_initializer(best_solution)
 
         # Append the best_solution and its performance to the list of priors
 
@@ -336,13 +330,26 @@ if __name__ == "__main__":
     print('visited_performance',visited_performance)
     print("visited_cost", visited_cost)
 
-
     # Convert visited_crews array to a list of strings to use as x-axis ticks
     x_data = [' '.join(map(str, crew)) for crew in visited_crews]
-    x_data = x_data[:20]
+    x_data = x_data[:25]
     x_indices = np.arange(len(x_data))
-    visited_performance = visited_performance[:20]
-    visited_cost = visited_cost[:20]
+    visited_performance = visited_performance[:25]
+    visited_cost = visited_cost[:25]
+
+    visited_utility = visited_performance + visited_cost
+    print('visited_utility', visited_utility)
+    best_visited_utility = np.argmin(visited_utility)
+    best_crew = visited_crews[best_visited_utility]
+    print("Best point suggestion : {}, iteration {}, utility: {}, performance: {}, cost: {}"
+          .format(best_crew, best_visited_utility, np.min(visited_utility), visited_performance[best_visited_utility],
+                  visited_cost[best_visited_utility]))
+
+    fbest_visited_utility = np.argmin(visited_utility[:20])
+
+    print("Best point budget 15 suggestion : iteration {}, utility: {}, performance: {}, cost: {}"
+          .format(fbest_visited_utility, np.min(visited_utility[:20]), visited_performance[fbest_visited_utility],
+                  visited_cost[fbest_visited_utility]))
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -352,26 +359,18 @@ if __name__ == "__main__":
 
     # Setting x-ticks
     ax.set_xticks(x_indices)
-    ax.set_xticklabels(x_data, rotation=45, fontsize = 8)  # Rotate for readability
+    ax.set_xticklabels(x_data, rotation=45, fontsize=8)  # Rotate for readability
     plt.title("BOFD Result")
     ax.set_xlabel('Crew Combinations')
     ax.set_ylabel('Total Time')
     ax.set_zlabel('Cost')
-    plt.ylim(0,2000);
+    plt.ylim(0, 2000);
     plt.tight_layout()
-
-
-    visited_utility = visited_performance + visited_cost
-    print('visited_utility',visited_utility)
-    best_visited_utility = np.argmin(visited_utility)
-    best_crew = visited_crews[best_visited_utility]
-    print("Best point suggestion : {}, iteration {}, value: {}".format(best_crew, best_visited_utility, np.min(visited_utility)))
-
     plt.show()
 
     # Convert visited_crews array to a list of strings to use as x-axis ticks
     x_data = [' '.join(map(str, crew)) for crew in visited_crews]
-    x_data = x_data[:20]
+    x_data = x_data[:25]
     # Create an array of indices for x-axis positioning
     x_indices = np.arange(len(x_data))
 
