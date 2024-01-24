@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="efe21d57-d786-4d01-8ed2-9ec92c989626" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOFD 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/BOFD 1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOFD_best_crew.json" beforeDir="false" afterPath="$PROJECT_DIR$/BOFD_best_crew.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USeMO 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/USeMO 1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cache/base_map4_config1_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/cache/base_map4_config1_cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -1146,7 +1144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705334988729</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Newest version">
+      <created>1705886660231</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1705886660231</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1176,6 +1181,7 @@
     <MESSAGE value="delete map6 cache" />
     <MESSAGE value="Init" />
     <MESSAGE value="testing map 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing map 3" />
+    <MESSAGE value="Newest version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Newest version" />
   </component>
 </project>
