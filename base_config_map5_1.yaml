@@ -13,7 +13,7 @@ comm_mode: LC
 # model-related hyperparam
 done_expoloration: 0.95
 test: False
-e_render : True
+e_render : False
 load_model: False
 MODEL_PATH: 'E:\Summer Research 2023\MADDPG_New\MADDPG\model\map3_converge\lowest_step-213.pth'
 #MODEL_PATH: ''

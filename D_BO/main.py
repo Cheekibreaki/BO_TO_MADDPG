@@ -17,13 +17,12 @@ from BayesianOptimizer import Xobs, Yobs
 
 np.random.seed(2609)
 random.seed(2609)
-worst_performance = float('10000000')
+worst_performance = float('10000')
 # interpreter_path = "C:/Users/Daniel Yin/AppData/Local/Programs/Python/Python39/python.exe"
-interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe "
-best_crew_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/D_BO/D_BO_best_crew.json "
-#base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map3_1.yaml "
-base_config_path = "E:/Summer Research 2023/BO_to_MADDPG/BO_to_MADDPG/base_config_map4_1.yaml "
-test_run_config_path = "E:/Summer Research 2023/MADDPG_New/MADDPG/assets/BO_TO_MADDPG/"
+interpreter_path = "C:/Users/david/PycharmProjects/MADDPG/venv/Scripts/python.exe"
+best_crew_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/BOOF_best_crew.json"
+base_config_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/base_config_map4_1.yaml"
+test_run_config_path = "C:/Users/david/PycharmProjects/MADDPG/assets/BO_TO_MADDPG"
 
 
 calculated_dict = {}
@@ -36,10 +35,10 @@ def calculate_cost(X):
     q_high_low = X[1]
     q_low_high = X[2]
     q_high_high = X[0]
-    cost_low_low = 10
-    cost_high_low = 45
-    cost_low_high = 50
-    cost_high_high = 80
+    cost_low_low = 95
+    cost_high_low = 120
+    cost_low_high = 140
+    cost_high_high = 150
 
     # Calculate the total cost of the crew
     total_cost = q_low_low * cost_low_low + q_high_low * cost_high_low + q_low_high * cost_low_high + q_high_high * cost_high_high
@@ -97,7 +96,8 @@ class discreteBranin:
         except subprocess.CalledProcessError as e:
             print(f"Error running exploration script_path: {e}")
             raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
-        return -1* (float(result) + calculate_cost(crew))
+        #return -1* (float(result) + calculate_cost(crew))
+        return (float(result) + calculate_cost(crew))
 
     def call_initializer(self, solution):
         # Specify the file path
@@ -105,7 +105,8 @@ class discreteBranin:
         crew = np.array(solution)
         if np.array_equal(solution, [0, 0, 0, 0]):
             
-            return -1 * (float(worst_performance) + float(calculate_cost(crew)))
+            #return -1 * (float(worst_performance) + float(calculate_cost(crew)))
+            return (float(worst_performance) + float(calculate_cost(crew)))
 
         # Write the data to the JSON file
         with open(file_path, 'w') as file:
@@ -120,7 +121,8 @@ class discreteBranin:
             print(f"Error running exploration script_path: {e}")
             raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
 
-        return -1* (float(result) + float(calculate_cost(crew)))
+        #return -1* (float(result) + float(calculate_cost(crew)))
+        return (float(result) + float(calculate_cost(crew)))
 
     # define the black box function
     def _interfunc(self, X):

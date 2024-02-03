@@ -365,7 +365,12 @@ class BayesianOptimizer():
                     # print("L-BFGS-B Optimized Beta and lengthscale:", pairBLS[np.argmin(foundXd)])
                     # print("L-BFGS-B next optimzed X: ", rX)
 
-            nextY = self.function.func(np.array(rX))
+            #nextY = self.function.func(np.array(rX))
+
+            if rX == (0, 0, 0, 0):
+                nextY = float('10000')
+            else:
+                nextY = self.function.func(np.array(rX))
 
             # Calculate regret for future usages
             print(self.ite, " Maximum: ", np.max(self.Yobs) * self.function.ismax, " at x:",
