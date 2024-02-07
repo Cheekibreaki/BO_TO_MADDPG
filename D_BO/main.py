@@ -21,7 +21,7 @@ worst_performance = float('10000')
 # interpreter_path = "C:/Users/Daniel Yin/AppData/Local/Programs/Python/Python39/python.exe"
 interpreter_path = "C:/Users/david/PycharmProjects/MADDPG/venv/Scripts/python.exe"
 best_crew_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/BOOF_best_crew.json"
-base_config_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/base_config_map4_1.yaml"
+base_config_path = "C:/Users/david/PycharmProjects/BO_to_MADDPG/base_config_map5_1.yaml"
 test_run_config_path = "C:/Users/david/PycharmProjects/MADDPG/assets/BO_TO_MADDPG"
 
 
@@ -35,10 +35,13 @@ def calculate_cost(X):
     q_high_low = X[1]
     q_low_high = X[2]
     q_high_high = X[0]
-    cost_low_low = 95
-    cost_high_low = 120
-    cost_low_high = 140
-    cost_high_high = 150
+    cost_high_high = 70
+    cost_high_low = 60
+    cost_low_high = 50
+    cost_low_low = 40
+
+
+
 
     # Calculate the total cost of the crew
     total_cost = q_low_low * cost_low_low + q_high_low * cost_high_low + q_low_high * cost_low_high + q_high_high * cost_high_high
@@ -180,7 +183,7 @@ for i in range(num_test):
     bestBO, box, boy, ite = BO.run(method="DiscreteBO")
     BOstop_time = time.time()
     ite = ite-1
-    print("Iter 0:", " Discrete BO x: ", bestBO, " y:", -1.0*myfunction.func(bestBO), " ite:", ite, " time: --- %s seconds ---" % (BOstop_time - BOstart_time))
+    print("Iter 0:", " Discrete BO x: ", bestBO, " y:", myfunction.func(bestBO), " ite:", ite, " time: --- %s seconds ---" % (BOstop_time - BOstart_time))
     # print(type(bestBO))
     BO.resetBO()
 

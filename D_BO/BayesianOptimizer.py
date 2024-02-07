@@ -71,7 +71,7 @@ class BayesianOptimizer():
         acq_func['discrete_idx'] = self.function.discreteIdx
         acq_func['cat_idx'] = self.function.categoricalIdx
         acq_func['dim'] = self.function.input_dim
-        acq_func['name'] = "ei" #Default acquisition function
+        acq_func['name'] = "ucb_opteta" #Default acquisition function
 
         self.acquisition = AcquisitionFunction(acq_func, inFunc.spaces)
         self.acquisition.setEsigma(lamda)
@@ -110,7 +110,7 @@ class BayesianOptimizer():
         acq_func = {}
         acq_func['discrete_idx'] = self.function.discreteIdx
         acq_func['cat_idx'] = self.function.categoricalIdx
-        acq_func['name'] = 'ucb'
+        acq_func['name'] = 'ucb_opteta'
         acq_func['kappa'] = 4.0
 
         # acq_func['name'] = 'pi'
@@ -137,11 +137,10 @@ class BayesianOptimizer():
         # for i in range(0,len(self.nXobs)):
         #     self.nXobs[i] = self.function.normalize(self.nXobs[i])
         #self.Xobs = [(2, 0, 0, 3), (0, 3, 3, 0), (1, 1, 1, 2), (3, 2, 2, 1), (3, 1, 3, 1)]
-        #self.Xobs = [(0,1,1,3), (2,2,2,1), (3,0,0,2), (1,3,3,0), (1,0,2,0)]
+        self.Xobs = [(0,1,1,3), (2,2,2,1), (3,0,0,2), (1,3,3,0), (1,0,2,0)]
         #self.Xobs = [(3, 3, 2, 1), (1, 0, 0, 3), (0, 2, 3, 0), (2, 1, 1, 2), (2, 2, 0, 2)]
-
         #self.Xobs = [(1, 3, 1, 2), (2, 0, 2, 1), (3, 2, 0, 3), (0, 1, 3, 0), (0, 2, 2, 0)]
-        self.Xobs = [(1, 3, 3, 0), (3, 1, 0, 3), (2, 2, 2, 1), (0, 0, 1, 2), (0, 2, 0, 2)]
+        #self.Xobs = [(1, 3, 3, 0), (3, 1, 0, 3), (2, 2, 2, 1), (0, 0, 1, 2), (0, 2, 0, 2)]
 
         self.Yobs = [self.function.black_box_function(np.array(i)) for i in self.Xobs]
         print(self.Yobs)
@@ -156,8 +155,8 @@ class BayesianOptimizer():
 
     def _runBO(self):
         self.useOwnGradientBasedOptimizer = False
-        self.acquisition.acq_name = 'ucb'
-
+        self.acquisition.acq_name = 'ucb_opteta'
+        #self.acquisition.acq_name = 'ucb'
         self.ite = 0
         lb = []
         ub = []
@@ -223,11 +222,11 @@ class BayesianOptimizer():
             self.GP.fit(self.Xobs, self.Yobs)
 
             # Find the current best point
-            current_max_y = np.max(self.Yobs)
+            current_max_y = np.min(self.Yobs)
             if current_max_y != current_Optimum:
                 current_Optimum = current_max_y
                 self.OptimumIte = self.ite
-            x0 = self.Xobs[np.argmax(self.Yobs)]  # Current best optimal point
+            x0 = self.Xobs[np.argmin(self.Yobs)]  # Current best optimal point
 
             # For n-dim function
             bnds = ()  # Define boundary tuple
@@ -241,6 +240,7 @@ class BayesianOptimizer():
                 self.acquisition.setIte(self.ite + 1)
                 ############### L-BFGS-B
                 if self.localOptimAlgo == "L-BFGS-B":
+
                     mini = minimize(lambda x: -self.acquisition.acq_kind(x, self.GP, current_max_y, obs=self.Xobs),
                                     initX, bounds=bnds, method="L-BFGS-B")
 
@@ -267,7 +267,9 @@ class BayesianOptimizer():
                     tmpX.append(suggestedX)
                     tmpA.append(tmpAcq)
 
-                    suggestedX = tmpX[np.argmax(tmpA)].copy()
+                    suggestedX = tmpX[np.argmin(tmpA)].copy()
+
+                    #print('suggestedX', suggestedX)
                     output_xobs = []
 
                 # print("nextX:",nextX)
@@ -362,19 +364,32 @@ class BayesianOptimizer():
                         mini = minimize(lambda x: objectiveUnstuck(x, False),
                                         candidateDelta, bounds=bndsEps, method="L-BFGS-B", tol=0.001)
                     rX = foundX[np.argmin(foundXd)]
+                    #print(foundX)
                     # print("L-BFGS-B Optimized Beta and lengthscale:", pairBLS[np.argmin(foundXd)])
                     # print("L-BFGS-B next optimzed X: ", rX)
 
             #nextY = self.function.func(np.array(rX))
-
-            if rX == (0, 0, 0, 0):
-                nextY = float('10000')
-            else:
-                nextY = self.function.func(np.array(rX))
+            #sortn = 1
+            while rX == [0, 0, 0, 0]:
+                print('while activated')
+                roundingg = np.array([[0,0,0,1],[0,0,1,0], [0,1,0,0], [1,0,0,0]])
+                #nextY = float('10000')
+                # Find the indices that would sort the array
+                #sorted_indices = np.argsort(foundXd)
+                #print('sorted array', sorted_indices )
+                # Find the second lowest value
+                #second_min_index = sorted_indices[sortn]
+                #print(second_min_index, type(second_min_index))
+                #rX = foundX[second_min_index]
+                #sortn += 1
+                roundingg = [[0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0], [1, 0, 0, 0]]
+                rXindex = np.random.choice([0,1,2,3], replace=False)
+                rX = roundingg[rXindex]
+            nextY = self.function.func(np.array(rX))
 
             # Calculate regret for future usages
-            print(self.ite, " Maximum: ", np.max(self.Yobs) * self.function.ismax, " at x:",
-                  self.Xobs[np.argmax(self.Yobs)], " nextX:", rX, " nextY:", nextY * self.function.ismax,
+            print(self.ite, " Minimum: ", np.min(self.Yobs) * self.function.ismax, " at x:",
+                  self.Xobs[np.argmin(self.Yobs)], " nextX:", rX, " nextY:", nextY * self.function.ismax,
                   " Xobs size:", len(self.Xobs))
 
             # Update Xobs Yobs
@@ -396,4 +411,4 @@ class BayesianOptimizer():
             # with open(file_path, 'w') as file:
             #     json.dump(np.array(rX), file)
 
-        return self.Xobs[np.argmax(self.Yobs)], self.Xobs, -1*self.Yobs, self.ite
+        return self.Xobs[np.argmin(self.Yobs)], self.Xobs, -1*self.Yobs, self.ite

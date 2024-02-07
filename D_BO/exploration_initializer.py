@@ -8,11 +8,10 @@ import subprocess
 
 
 # working_directory = "D:/2023 Summer/MADDPG/src"
-multi_agent_working_directory = "E:/Summer Research 2023/MADDPG_New/MADDPG/src/"
-single_agent_working_directory = "E:/Summer Research 2023/MADDPG_single_agent/MADDPG/src/"
+multi_agent_working_directory = "C:/Users/david/PycharmProjects/MADDPG/src"
+single_agent_working_directory = "C:/Users/david/PycharmProjects/single_agent/src"
 # interpreter_path = "C:/Users/Daniel Yin/AppData/Local/Programs/Python/Python39/python.exe"
-interpreter_path = "E:/Summer Research 2023/DME-DRL Daniel/DME_DRL_CO/venv/Scripts/python.exe"
-
+interpreter_path = "C:/Users/david/PycharmProjects/MADDPG/venv/Scripts/python.exe"
 
 
 def split_range(start, end, segment_size):
